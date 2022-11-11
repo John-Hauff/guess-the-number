@@ -4,6 +4,8 @@ A simple web app game where the player guesses a number between 1 and 100. Writt
 
 ## How to Play
 
+---
+
 The player enters their guess (between 1 and 100) into the guess field, then uses the submit button to submit their guess. The game was built to meet the simple criteria given below:
 
 1. Generate a random number between 1 and 100.
