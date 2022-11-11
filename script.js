@@ -11,12 +11,27 @@ const guessTblBdy = document.createElement('tbody');
 guessTbl.appendChild(guessTblBdy);
 
 // Create a number for the user to guess (1 <= n <= 100)
+// TODO: Find a way to hide the solution from the player's view in the console
 let solution = generateNewSolution(1, 100);
 let solutionGuessed = false;
 
+const submissionButton = document.getElementById('guessSubmissionButton');
+
 // Get what the user guessed when the user clicks the submit guess button
-document.getElementById('guessSubmissionButton').onclick =
-  handleGuessSubmission;
+submissionButton.addEventListener('click', handleGuessSubmission);
+
+const guessField = document.getElementById('guessField');
+
+// Add event listener for submitting guess when the player presses
+// the Enter key while filling out the guess field
+guessField.addEventListener('keyup', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+
+    submissionButton.click();
+    // handleGuessSubmission();
+  }
+});
 
 // Reset the game to its original state
 document.getElementById('restartButton').onclick = handleGameRestart;
