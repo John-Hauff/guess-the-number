@@ -32,8 +32,10 @@ guessField.addEventListener('keyup', (event) => {
   }
 });
 
+const restartButton = document.getElementById('restartButton');
+
 // Reset the game to its original state
-document.getElementById('restartButton').onclick = handleGameRestart;
+restartButton.addEventListener('click', handleGameRestart);
 
 // Handle a guess submission
 function handleGuessSubmission() {
