@@ -161,12 +161,13 @@ function appendRowToTurnHistory(guess) {
   rowHeaderCell.appendChild(document.createTextNode(turn));
   prevGuessCell.appendChild(document.createTextNode(guess));
 
+  // Give the prev guess cell a class name based on the accuracy of the guess
+  prevGuessCell.className =
+    guess === solution ? 'correctGuess' : 'incorrectGuess';
+
   // Append the new cells to the new row
   row.appendChild(rowHeaderCell);
   row.appendChild(prevGuessCell);
-
-  // Give the row a class name based on the accuracy of the guess
-  row.className = guess === solution ? 'correctGuess' : 'incorrectGuess';
 
   // Append the new row to the existing table body
   guessTblBdy.appendChild(row);
