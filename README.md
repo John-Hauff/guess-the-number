@@ -1,6 +1,6 @@
 # Guess the Number Game
 
-A simple web app game where the player guesses a number between 1 and 100. Written using HTML, CSS, and JS. The game's concept is based off of the exercise given in <https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/A_first_splash>, but the JS code and most if not all of the HTML code is written completely from scratch.
+A simple web app game where the player guesses a number between 1 and 100. Written using HTML, CSS, and JS. The game's concept is based off of the exercise listed on <a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/A_first_splash" target="_blank">this MDN Web Docs page</a>, but the JS code and most if not all of the HTML code is written completely from scratch.
 
 ## How to Play
 
