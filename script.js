@@ -29,7 +29,6 @@ guessField.addEventListener('keyup', (event) => {
     event.preventDefault();
 
     submissionButton.click();
-    // handleGuessSubmission();
   }
 });
 
