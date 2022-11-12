@@ -47,8 +47,6 @@ function handleGuessSubmission() {
     return;
   }
 
-  appendRowToTurnHistory(guess);
-
   // Check if the max turn count has been reached without correct answer guessed
   if (turn >= 10 && guess !== solution) {
     // Tell the user that the game is over and allow user to restart the game
@@ -62,16 +60,21 @@ function handleGuessSubmission() {
     return;
   }
 
+  // Create a string to specify what the feedback for the guess is
+  let guessFeedback = '';
+
   // Check if guess is correct
   if (guess > solution) {
-    alert('Sorry, your guess is too high. Try again.');
+    guessFeedback = 'Sorry, your guess is too high. Try again.';
+    alert(guessFeedback);
   } else if (guess < solution) {
-    alert('Sorry, your guess is too low. Try again.');
+    guessFeedback = 'Sorry, your guess is too low. Try again.';
+    alert(guessFeedback);
   } else {
     // Otherwise, the guess must be correct
-    alert(
-      'Congratulations! You have guessed the correct number.\nWant to play again? Select the Restart button.'
-    );
+    guessFeedback =
+      'Congratulations! You have guessed the correct number.\nWant to play again? Select the Restart button.';
+    alert(guessFeedback);
 
     // Set flag to prevent player from making more guesses
     solutionGuessed = true;
@@ -80,7 +83,12 @@ function handleGuessSubmission() {
     document.getElementById('restartButton').hidden = false;
   }
 
+  appendRowToTurnHistory(guess, guessFeedback);
+
   turn++;
+
+  clearGuessField();
+  guessField.focus();
 }
 
 function handleGameRestart() {
@@ -131,14 +139,17 @@ function generateTurnHistoryTable() {
   const headerRow = document.createElement('tr');
   const turnsColHeaderCell = document.createElement('th');
   const guessesColHeaderCell = document.createElement('th');
+  const guessFeedbackcolHeaderCell = document.createElement('th');
 
   // Append the column header labels to the column header cells of the table
   turnsColHeaderCell.appendChild(document.createTextNode('Turn #'));
   guessesColHeaderCell.appendChild(document.createTextNode('Guess'));
+  guessFeedbackcolHeaderCell.appendChild(document.createTextNode('Feedback'));
 
   // Append the column's header cells to the header row of the table
   headerRow.appendChild(turnsColHeaderCell);
   headerRow.appendChild(guessesColHeaderCell);
+  headerRow.appendChild(guessFeedbackcolHeaderCell);
 
   // Append the header row of the table to the table's column head node
   guessTblHead.appendChild(headerRow);
@@ -153,15 +164,17 @@ function generateTurnHistoryTable() {
 }
 
 // Creates another row with cells for the guess history table to record the previous turn
-function appendRowToTurnHistory(guess) {
+function appendRowToTurnHistory(guess, guessFeedback) {
   const row = document.createElement('tr');
 
   const rowHeaderCell = document.createElement('th');
   const prevGuessCell = document.createElement('td');
+  const guessFeedbackCell = document.createElement('td');
 
   // Append the relevant text to the header and guess data cells
   rowHeaderCell.appendChild(document.createTextNode(turn));
   prevGuessCell.appendChild(document.createTextNode(guess));
+  guessFeedbackCell.appendChild(document.createTextNode(guessFeedback));
 
   // Give the prev guess cell a class name based on the accuracy of the guess
   prevGuessCell.className =
@@ -170,6 +183,7 @@ function appendRowToTurnHistory(guess) {
   // Append the new cells to the new row
   row.appendChild(rowHeaderCell);
   row.appendChild(prevGuessCell);
+  row.appendChild(guessFeedbackCell);
 
   // Append the new row to the existing table body
   guessTblBdy.appendChild(row);
